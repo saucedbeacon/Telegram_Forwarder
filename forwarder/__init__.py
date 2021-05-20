@@ -35,7 +35,8 @@ if ENV:
     URL = os.environ.get('URL', "")  # Does not contain token
     PORT = int(os.environ.get('PORT', 5000))
     CERT_PATH = os.environ.get("CERT_PATH")
-
+    BLACKLIST = os.environ.get("BLACKLIST")
+    
     WORKERS = int(os.environ.get('WORKERS', 4))
 
 else:
