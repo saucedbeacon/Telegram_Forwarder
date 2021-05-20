@@ -1,6 +1,6 @@
 from telegram.ext import MessageHandler, Filters
 
-from forwarder import FROM_CHATS, TO_CHATS, LOGGER, dispatcher
+from forwarder import FROM_CHATS, TO_CHATS, LOGGER, BLACKLIST, dispatcher
 
 
 def forward(update, context):
@@ -20,7 +20,7 @@ def forward(update, context):
 
 try:
     FORWARD_HANDLER = MessageHandler(
-        (Filters.chat(FROM_CHATS) | Filters.chat_type.private) & ~Filters.status_update & ~Filters.command,
+        (Filters.chat(FROM_CHATS) | Filters.chat_type.private) & ~Filters.status_update & ~Filters.command & ~Filters.sender_chat(BLACKLIST),
         forward,
         run_async=True
     )
